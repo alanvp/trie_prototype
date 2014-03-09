@@ -13,8 +13,8 @@ get '/*'  do
     request.websocket do |ws|
       ws.onopen do
         settings.sockets << ws
-        File.open("mini_titles").each_line do |l|
-          ws.send(l.downcase.chomp)
+        File.open("tiny_titles").each_line do |l|
+          ws.send(l.chomp)
           sleep(0.00001)
         end
         ws.close_websocket

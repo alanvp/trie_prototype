@@ -54,7 +54,11 @@ App.Views.Index = Backbone.View.extend({
   renderResults: function(event) {
     event.preventDefault();
     $('#results').empty();
-    var results = App.autocompleter.complete($('#searchBox').val());
+    var searchTerm = $('#searchBox').val();
+    var firstChar = searchTerm.substring(0,1).toUpperCase();
+    var tail = searchTerm.substring(1);
+    searchTerm = firstChar + tail;
+    var results = App.autocompleter.complete(searchTerm);
     results.forEach(function(result) {
       $('#results').append("<li><a href=\"https://en.wikipedia.org/wiki/"+ result + "\">"+ result + "</li>");
     });
